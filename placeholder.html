@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>colleen carroll ★ coming soon</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=VT323&family=Orbitron:wght@700;900&display=swap');
+
+  *{box-sizing:border-box;}
+  html,body{
+    margin:0;
+    min-height:100vh;
+    background:linear-gradient(160deg, #05010f 0%, #10032e 45%, #1a0538 70%, #06010f 100%);
+    font-family:'VT323', monospace;
+    color:#e6e6ff;
+    overflow-x:hidden;
+  }
+
+  #stars{
+    position:fixed;
+    inset:0;
+    width:100%;
+    height:100%;
+    z-index:0;
+  }
+  .star{
+    position:absolute;
+    border-radius:50%;
+    background:#fff;
+    cursor:pointer;
+    transition: transform 0.15s ease-out;
+    animation: twinkle var(--dur) ease-in-out infinite;
+    animation-delay: var(--delay);
+  }
+  @keyframes twinkle{
+    0%, 100%{ opacity: var(--min-op); }
+    50%{ opacity: 1; }
+  }
+  .star.pop{
+    animation: pop 0.5s ease-out forwards !important;
+  }
+  @keyframes pop{
+    0%{ transform: scale(1); }
+    40%{ transform: scale(2.6); box-shadow:0 0 14px 6px rgba(255,255,255,0.9); }
+    100%{ transform: scale(1); opacity:1; }
+  }
+  @media (prefers-reduced-motion: reduce){
+    .star{ animation: none; opacity: 0.8; }
+  }
+
+  main{
+    position:relative;
+    z-index:1;
+    min-height:100vh;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:24px;
+  }
+
+  .frame{
+    width:100%;
+    max-width:640px;
+    background:linear-gradient(180deg, rgba(26,10,61,0.92), rgba(10,4,32,0.94));
+    border:4px solid;
+    border-image: linear-gradient(45deg,#ff2ee0,#00f6ff,#faff00,#ff2ee0) 1;
+    border-radius:10px;
+    padding:36px 30px 30px;
+    text-align:center;
+    box-shadow:
+      0 0 0 2px rgba(255,255,255,0.08) inset,
+      0 0 40px rgba(180,0,255,0.35),
+      0 0 90px rgba(0,246,255,0.15);
+    pointer-events:auto;
+  }
+
+  .badge{
+    display:inline-block;
+    font-family:'VT323', monospace;
+    font-size:14px;
+    letter-spacing:0.08em;
+    color:#0a0420;
+    background:linear-gradient(180deg,#faff00,#ffb300);
+    padding:5px 14px 6px;
+    border-radius:3px;
+    border:2px solid #0a0420;
+    box-shadow:0 2px 0 #7a5c00, inset 0 1px 0 rgba(255,255,255,0.8);
+    text-transform:uppercase;
+  }
+
+  h1{
+    font-family:'Orbitron', sans-serif;
+    font-weight:900;
+    font-size:clamp(1.7rem, 6vw, 2.6rem);
+    margin:22px 0 6px;
+    letter-spacing:0.03em;
+    background:linear-gradient(90deg,#ff2ee0,#00f6ff,#faff00,#ff2ee0);
+    background-size:300% auto;
+    -webkit-background-clip:text;
+    background-clip:text;
+    color:transparent;
+    animation: hue 6s linear infinite;
+    text-shadow:0 0 18px rgba(255,255,255,0.15);
+  }
+  @keyframes hue{ to{ background-position:300% center; } }
+  @media (prefers-reduced-motion: reduce){ h1{ animation:none; } }
+
+  .glyph{ color:#faff00; text-shadow:0 0 8px #faff00; }
+
+  p.tag{
+    font-size:1.15rem;
+    color:#b9aef7;
+    margin:0 0 26px;
+  }
+
+  .divider{
+    height:2px;
+    margin:22px 0;
+    background:repeating-linear-gradient(90deg,#00f6ff 0 8px, transparent 8px 16px);
+    opacity:0.7;
+  }
+
+  .info{
+    font-size:1.05rem;
+    line-height:1.7;
+    color:#d8d3ff;
+  }
+  .info a{
+    color:#00f6ff;
+    text-decoration:none;
+    border-bottom:1px dashed #00f6ff;
+  }
+  .info a:hover{ color:#faff00; border-color:#faff00; }
+
+  .hint{
+    margin-top:20px;
+    font-size:0.8rem;
+    color:#7a70b8;
+    letter-spacing:0.05em;
+  }
+
+  footer{
+    margin-top:18px;
+    font-size:0.75rem;
+    color:#5f57a0;
+    letter-spacing:0.05em;
+  }
+</style>
+</head>
+<body>
+
+<div id="stars" aria-hidden="true"></div>
+
+<main>
+  <div class="frame">
+    <span class="badge">✦ building something new ✦</span>
+    <h1>colleen carroll</h1>
+    <p class="tag">
+      <span class="glyph">★</span> technical recruiter · technical translator · community builder <span class="glyph">★</span>
+    </p>
+
+    <div class="divider"></div>
+
+    <p class="info">
+      the real site is on its way.<br>
+      in the meantime — <a href="mailto:hello@example.com">email me</a>
+      or find me on <a href="https://www.linkedin.com/in/your-linkedin-here" target="_blank" rel="noopener">linkedin</a>.
+    </p>
+
+    <p class="hint">psst — poke the stars</p>
+
+    <div class="divider"></div>
+
+    <footer>best viewed on any browser · est. 2026</footer>
+  </div>
+</main>
+
+<script>
+  const field = document.getElementById('stars');
+  const STAR_COUNT = window.innerWidth < 640 ? 45 : 80;
+  const stars = [];
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  for(let i=0;i<STAR_COUNT;i++){
+    const el = document.createElement('div');
+    el.className = 'star';
+    const size = 1 + Math.random()*2.6;
+    const x = Math.random()*100;
+    const y = Math.random()*100;
+    el.style.width = size + 'px';
+    el.style.height = size + 'px';
+    el.style.left = x + 'vw';
+    el.style.top = y + 'vh';
+    el.style.setProperty('--dur', (2 + Math.random()*3).toFixed(2) + 's');
+    el.style.setProperty('--delay', (Math.random()*3).toFixed(2) + 's');
+    el.style.setProperty('--min-op', (0.25 + Math.random()*0.35).toFixed(2));
+    el.dataset.depth = (0.2 + Math.random()*0.8).toFixed(2);
+    el.dataset.baseX = x;
+    el.dataset.baseY = y;
+
+    el.addEventListener('click', () => {
+      el.classList.remove('pop');
+      void el.offsetWidth; // restart animation
+      el.classList.add('pop');
+    });
+    el.addEventListener('mouseenter', () => {
+      el.style.transform = 'scale(1.8)';
+    });
+    el.addEventListener('mouseleave', () => {
+      el.style.transform = 'scale(1)';
+    });
+
+    field.appendChild(el);
+    stars.push(el);
+  }
+
+  if(!reduceMotion){
+    let tx = 0, ty = 0;
+    window.addEventListener('mousemove', (e) => {
+      tx = (e.clientX / window.innerWidth - 0.5);
+      ty = (e.clientY / window.innerHeight - 0.5);
+      stars.forEach(el => {
+        const depth = parseFloat(el.dataset.depth);
+        const shiftX = tx * depth * 14;
+        const shiftY = ty * depth * 14;
+        el.style.marginLeft = shiftX + 'px';
+        el.style.marginTop = shiftY + 'px';
+      });
+    });
+  }
+</script>
+
+</body>
+</html>
